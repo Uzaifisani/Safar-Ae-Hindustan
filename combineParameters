@@ -1,0 +1,18 @@
+function combineParameters(Uid, Pid, Eid, Date, RandomNumber) {
+    // Create an array of special characters
+    const specialChars = ['#', '@', '$', '%', '*', '^', '\\', '/'];
+
+    // Function to get a random special character
+    function getRandomChar() {
+        return specialChars[Math.floor(Math.random() * specialChars.length)];
+    }
+
+    // Combine the parameters with random special characters
+    const combinedString = `${Uid}${getRandomChar()}${Pid}${getRandomChar()}${Eid}${getRandomChar()}${Date.replace(/-/g, '')}${getRandomChar()}${RandomNumber}`;
+    
+    return combinedString;
+}
+
+// Example usage:
+const result = combineParameters(257, '012', 347, '28-08-2024', 7598);
+console.log(result);  
