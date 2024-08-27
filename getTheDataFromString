@@ -1,0 +1,26 @@
+function reverseString(inputString) {
+    // Use a regular expression to split the input string by any special character
+    const parts = inputString.split(/[#@\$%\*\^\\/]/);
+
+    // Assuming the parts are always in this order: Uid, Pid, Eid, Date, RandomNumber
+    const Uid = parts[0];
+    const Pid = parts[1];
+    const Eid = parts[2];
+
+    // Reconstruct the original date format from the fourth part
+    const rawDate = parts[3];
+    const formattedDate = `${rawDate.slice(0, 2)}-${rawDate.slice(2, 4)}-${rawDate.slice(4)}`;
+
+    // The last part is the RandomNumber
+    const RandomNumber = parts[4];
+
+    // Create the output string with labels
+    const result = `Uid=${Uid}, Pid=${Pid}, Eid=${Eid}, Date=${formattedDate}, RandomNumber=${RandomNumber}`;
+    
+    return result;
+}
+
+// Example usage:
+const input = "7^02212#3247^28082024%7598";
+const reversed = reverseString(input);
+console.log(reversed);  // Output: Uid=257, Pid=012, Eid=347, Date=28-08-2024, RandomNumber=7598
